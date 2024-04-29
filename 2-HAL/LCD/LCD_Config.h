@@ -4,7 +4,7 @@
 /******* SWC    :    LCD        *******/
 /******* Version:    1.0        *******/
 /**************************************/
-/* LCD_config.h */
+
 
 #ifndef LCD_CONFIG_H
 #define LCD_CONFIG_H
@@ -22,7 +22,11 @@
 	
 /* Select : - LCD_4BIT_MODE
 			- LCD_8BIT_MODE */	
-#define LCD_u8_INIT_MODE			LCD_4BIT_MODE
+#define LCD_u8_INIT_MODE			LCD_8BIT_MODE
+
+/* Select : - LCD_SHIFT_RIGHT
+			- LCD_SHIFT_LEFT */
+#define LCD_u8_SHIFT_DIR			LCD_SHIFT_RIGHT
 	
 	
 	
