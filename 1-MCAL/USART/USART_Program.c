@@ -82,12 +82,12 @@ u8 UART_u8RxData(u8* Copy_pu8RecvDataByte)
 
 //--------------------------------------------------------------------------------
 
-u8 UART_u8TxStringSynchWithBlocking(u8* Copy_pu8TxString)
+/*u8 UART_u8TxStringSynchWithBlocking(u8* Copy_pu8TxString)
 {
 	
 
 }// end UART_u8TxStringSynchWithBlocking
-
+*/
 //-----------------------------------------------------------------------------------------
 
 
