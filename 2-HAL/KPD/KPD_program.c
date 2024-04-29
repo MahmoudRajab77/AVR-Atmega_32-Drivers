@@ -16,8 +16,8 @@
 
 /* HAL */
 #include "KPD_interface.h"
-#include "KPD_private.h"
-#include "KPD_config.h"
+#include"KPD_private.h"
+#include"KPD_config.h"
 
 static KPD_Au8Keys[4][4]= {
 	{'1', '2', '3', '+'}, 
