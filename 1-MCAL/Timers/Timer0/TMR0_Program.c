@@ -106,7 +106,7 @@ void TMR0_voidInit()
 					
 				break;
 				
-				case TMR0_SET_OC_COMP_MATCH;
+				case TMR0_SET_OC_COMP_MATCH:
 				
 					SET_BIT(TMR0_u8_TCCR0_REG, 4);
 					SET_BIT(TMR0_u8_TCCR0_REG, 5);
@@ -262,7 +262,7 @@ void TMR0_voidSetMode(u8 Copy_u8TimerMode, u8 Copy_u8OutputMode)
 					
 				break;
 				
-				case TMR0_SET_OC_COMP_MATCH;
+				case TMR0_SET_OC_COMP_MATCH:
 					
 					/* Stop Timer */
 					TMR0_voidDisable();
@@ -335,7 +335,7 @@ void TMR0_voidSetMode(u8 Copy_u8TimerMode, u8 Copy_u8OutputMode)
 					
 				break;
 				
-				case TMR0_SET_OC_COMP_MATCH;
+				case TMR0_SET_OC_COMP_MATCH:
 					
 					/* Stop Timer */
 					TMR0_voidDisable();
@@ -659,7 +659,7 @@ u8 TMR0_u8NormalMode(u16 Copy_u16EventTime, u8 Copy_u8ClkMode, void (*Copy_pfEve
 				
 			break;
 			//----------------------------------------------------------------------------------
-			case TIMERS_CLK_PRSCLR_1024:
+			case TMR0_CLK_PRSCLR_1024:
 				
 				Local_f32TOV = (1024.0*256.0)/F_u8_CPU;			// calculating Tov
 				
@@ -1058,7 +1058,7 @@ u8 TMR0_u8PhaseCorrect(u8 Copy_u8DutyCycle, u8 Copy_u8ClkMode)
 		/* Calculation */
 		Local_f32TonValue = (510.0 * (f32)Copy_u8DutyCycle)/100.0;
 		Local_u8TonValue = (u8) Local_f32TonValue;
-		Local_f32Fraction = local_f32TonValue - Local_u8TonValue;
+		Local_f32Fraction = Local_f32TonValue - Local_u8TonValue;
 				
 		if (Local_f32Fraction >= 0.445)
 		{
@@ -1108,9 +1108,9 @@ u8 TMR0_u8PhaseCorrect(u8 Copy_u8DutyCycle, u8 Copy_u8ClkMode)
 
 //###########################################< ISR_Normal Mode >###########################################
 
-Void __vector_11(Void) __attribute__((signal));
+void __vector_11(void) __attribute__((signal));
 
-Void __vector_11(Void)
+void __vector_11(void)
 {
 	static u16 Local_u16CounterOVF = 0;
 	
@@ -1134,15 +1134,15 @@ Void __vector_11(Void)
 
 //###########################################< ISR_CTC Mode >###########################################
 
-Void __vector_10(Void) __attribute__((signal));
+void __vector_10(void) __attribute__((signal));
 
-Void __vector_10(Void)
+void __vector_10(void)
 {
 	static u16 Local_u16CounterCTC = 0;
 	
 	Local_u16CounterCTC++;
 	
-	if (Local_u16CounterCTC == TIMERS_u16NumOfCompMatch)
+	if (Local_u16CounterCTC == TMR0_u16NumOfCompMatch)
 	{
 		// Resetting the counter 
 		Local_u16CounterCTC = 0;
