@@ -14,7 +14,7 @@
 #include "ADC_Config.h"
 
 /* Global pointer to function */
-static void (*ADC_pfNotification)(u16) = NULL; // globally to be seen by ISR
+static void (*ADC_pfNotification)(u16) = NULL; 
 
 static u8 ADC_u8BusyFlag = 0;    // this flag indicates if the conversion cycle ended or not 
 
@@ -70,7 +70,7 @@ u8 ADC_u8GetDigitalValueSynchNonBlocking(u8 Copy_u8ChannelNB, u16* Copy_pu16Digi
 			/* Read Digital Value */
 			*Copy_pu16DigitalValue = ADC_u16_ADC_REG;
 			/* Clearing flag */
-			SET_BIT()ADC_u8_ADCSRA_REG,4); // This flag is cleared by setting it to 1
+			SET_BIT(ADC_u8_ADCSRA_REG,4); // This flag is cleared by setting it to 1
 		}
 	}// end if 
 	else 
@@ -128,7 +128,7 @@ void __vector_16(void){
 		/* Clear PIE */
 		CLR_BIT(ADC_u8_ADCSRA_REG,3);
 		
-		/* Calling Notification function */
+		/* Passing the value to Notification function */
 		ADC_pfNotification(ADC_u16_ADC_REG); 
 		
 		/* Clearing the BusyFlag */
@@ -138,4 +138,4 @@ void __vector_16(void){
 		once it starts to excute the ISR as mentioned in Datasheet */
 	
 	}//end if 
-} 
+}
