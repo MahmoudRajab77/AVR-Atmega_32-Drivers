@@ -6,8 +6,8 @@
 /**************************************/
 
 /* lib layer */
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
+#include "../../LIB/STD_TYPES.h"
+#include "../../LIB/BIT_MATH.h"
 
 /* MCAL */
 #include "DIO_interface.h" 
@@ -28,54 +28,54 @@ u8 DIO_u8SetPinDirection(u8 Copy_u8PortId, u8 Copy_u8PinId, u8 Copy_u8PinDirecti
 		switch (Copy_u8PortId)
 		{
 			case DIO_u8_PORTA:
-			switch(Copy_u8PinDirection)
-			{
-				case DIO_u8_OUTPUT:
-				SET_BIT(DDRA_u8_REG, Copy_u8PinId);
-				break;
-				case DIO_u8_INPUT:
-				CLR_BIT(DDRA_u8_REG, Copy_u8PinId);
-				break;
-			}//end switch PORTA
+				switch(Copy_u8PinDirection)
+				{
+					case DIO_u8_OUTPUT:
+						SET_BIT(DDRA_u8_REG, Copy_u8PinId);
+					break;
+					case DIO_u8_INPUT:
+						CLR_BIT(DDRA_u8_REG, Copy_u8PinId);
+					break;
+				}//end switch PORTA
 			break;//end of case PORTA
 			
 			//case PORTB
 			case DIO_u8_PORTB:
-			switch(Copy_u8PinDirection)
-			{
-				case DIO_u8_OUTPUT:
-				SET_BIT(DDRB_u8_REG, Copy_u8PinId);
-				break;
-				case DIO_u8_INPUT:
-				CLR_BIT(DDRB_u8_REG, Copy_u8PinId);
-				break;
-			}//end switch PORTB	
+				switch(Copy_u8PinDirection)
+				{
+					case DIO_u8_OUTPUT:
+						SET_BIT(DDRB_u8_REG, Copy_u8PinId);
+					break;
+					case DIO_u8_INPUT:
+						CLR_BIT(DDRB_u8_REG, Copy_u8PinId);
+					break;
+				}//end switch PORTB
 			break;//end case PORTB
 			
 			//case PORTC
 			case DIO_u8_PORTC:
-			switch(Copy_u8PinDirection)
-			{
-				case DIO_u8_OUTPUT:
-				SET_BIT(DDRC_u8_REG, Copy_u8PinId);
-				break;
-				case DIO_u8_INPUT:
-				CLR_BIT(DDRC_u8_REG, Copy_u8PinId);
-				break;
-			}//end switch PORTC
-			break;//end of case PORTA
+				switch(Copy_u8PinDirection)
+				{
+					case DIO_u8_OUTPUT:
+						SET_BIT(DDRC_u8_REG, Copy_u8PinId);
+						break;
+					case DIO_u8_INPUT:
+						CLR_BIT(DDRC_u8_REG, Copy_u8PinId);
+						break;
+				}//end switch PORTC
+			break;//end of case PORTC
 			
 			//case PORTD
 			case DIO_u8_PORTD:
-			switch(Copy_u8PinDirection)
-			{
-				case DIO_u8_OUTPUT:
-				SET_BIT(DDRD_u8_REG, Copy_u8PinId);
-				break;
-				case DIO_u8_INPUT:
-				CLR_BIT(DDRD_u8_REG, Copy_u8PinId);
-				break;
-			}//end switch PORTD
+				switch(Copy_u8PinDirection)
+				{
+					case DIO_u8_OUTPUT:
+						SET_BIT(DDRD_u8_REG, Copy_u8PinId);
+					break;
+					case DIO_u8_INPUT:
+						CLR_BIT(DDRD_u8_REG, Copy_u8PinId);
+					break;
+				}//end switch PORTD
 			break;//end of case PORTD
 		
 		}//end switch 
@@ -232,74 +232,34 @@ u8 DIO_u8GetPinValue(u8 Copy_u8PortId, u8 Copy_u8PinId, u8* Copy_pu8ReturnedPinV
 u8 DIO_u8SetPortDirection(u8 Copy_u8PortId, u8 Copy_u8PortDirection)
 {
 	u8 Local_u8ReturnedState = STD_TYPES_OK;
-	if ((Copy_u8PortId <= DIO_u8_PORTD) && ((Copy_u8PortDirection == DIO_u8_INPUT) || (Copy_u8PortDirection == DIO_u8_OUTPUT)))
-	{
-		switch (Copy_u8PortId)
-		{
-			//case PORTA
-			case DIO_u8_PORTA:
-				switch (Copy_u8PortDirection)
-				{
-					case DIO_u8_INPUT:
-						DDRA_u8_REG = 0x00;
-					break;
-					
-					case DIO_u8_OUTPUT:
-						DDRA_u8_REG = 0xFF;
-					break;	
-				}//end switch for 'PORTA' Direction 				
-			break;//end case PORTA
-			
-			//case PORTB
-			case DIO_u8_PORTB:
-				switch (Copy_u8PortDirection)
-				{
-					case DIO_u8_INPUT:
-						DDRB_u8_REG = 0x00;
-					break;
-					
-					case DIO_u8_OUTPUT:
-						DDRB_u8_REG = 0xFF;
-					break;	
-				}//end switch for 'PORTB' Direction 				
-			break;//end case PORTB
-			
-			//case PORTC
-			case DIO_u8_PORTC:
-				switch (Copy_u8PortDirection)
-				{
-					case DIO_u8_INPUT:
-						DDRC_u8_REG = 0x00;
-					break;
-					
-					case DIO_u8_OUTPUT:
-						DDRC_u8_REG = 0xFF;
-					break;	
-				}//end switch for 'PORTC' Direction 				
-			break;//end case PORTC
-			
-			//case PORTD
-			case DIO_u8_PORTD:
-				switch (Copy_u8PortDirection)
-				{
-					case DIO_u8_INPUT:
-						DDRD_u8_REG = 0x00;
-					break;
-					
-					case DIO_u8_OUTPUT:
-						DDRD_u8_REG = 0xFF;
-					break;	
-				}//end switch for 'PORTD' Direction 				
-			break;//end case PORTD
-			
-		}//end switch for the PORT
-	}
-	else 
-	{
-		Local_u8ReturnedState = STD_TYPES_NOK;
-	}	
-	return Local_u8ReturnedState;
 	
+	switch (Copy_u8PortId)
+	{
+		//case PORTA
+		case DIO_u8_PORTA:
+			DDRA_u8_REG = Copy_u8PortDirection;
+		break;//end case PORTA
+			
+		//case PORTB
+		case DIO_u8_PORTB:
+			DDRB_u8_REG = Copy_u8PortDirection;
+		break;//end case PORTB
+			
+		//case PORTC
+		case DIO_u8_PORTC:
+			DDRC_u8_REG = Copy_u8PortDirection;	
+		break;//end case PORTC
+			
+		//case PORTD
+		case DIO_u8_PORTD:
+			DDRD_u8_REG = Copy_u8PortDirection;	
+		break;//end case PORTD
+		
+		default:
+			Local_u8ReturnedState = STD_TYPES_NOK;
+		break;	
+	}//end switch for the PORT
+	return Local_u8ReturnedState;
 }//end SetPortDirection function
 
 //------------------------------------------< SetPortValue Function >-----------------------------------------
@@ -326,6 +286,7 @@ u8 DIO_u8SetPortValue(u8 Copy_u8PortId, u8 Copy_u8PortValue)
 		break;
 		default:
 			Local_u8ReturnedState = STD_TYPES_NOK;
+		break;
 			
 	}//end switch for PORT
 	return Local_u8ReturnedState;
@@ -339,27 +300,27 @@ u8 DIO_u8GetPortValue(u8 Copy_u8PortId, u8* Copy_pu8ReturnedPortValue)
 	if (Copy_pu8ReturnedPortValue != NULL)
 	{
 		switch (Copy_u8PortId)
-	{
-		case DIO_u8_PORTA:
-	        *Copy_pu8ReturnedPortValue = PINA_u8_REG;
-		break;
+		{
+			case DIO_u8_PORTA:
+				*Copy_pu8ReturnedPortValue = PINA_u8_REG;
+			break;
 
-		case DIO_u8_PORTB:
-			*Copy_pu8ReturnedPortValue = PINB_u8_REG;
-		break;
-		
-		case DIO_u8_PORTC:
-			*Copy_pu8ReturnedPortValue = PINC_u8_REG;
-		break;
-		
-		case DIO_u8_PORTD:
-			*Copy_pu8ReturnedPortValue = PIND_u8_REG;
-		break;
-		default:
-			Local_u8ReturnedState = STD_TYPES_NOK;
+			case DIO_u8_PORTB:
+				*Copy_pu8ReturnedPortValue = PINB_u8_REG;
+			break;
+
+			case DIO_u8_PORTC:
+				*Copy_pu8ReturnedPortValue = PINC_u8_REG;
+			break;
 			
-	}//end switch for PORT
-	}
+			case DIO_u8_PORTD:
+				*Copy_pu8ReturnedPortValue = PIND_u8_REG;
+			break;
+			default:
+				Local_u8ReturnedState = STD_TYPES_NOK;
+			break;
+		}//end switch for PORT
+	}// end if
 	else 
 	{
 		Local_u8ReturnedState = STD_TYPES_NOK;
